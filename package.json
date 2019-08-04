@@ -2,10 +2,13 @@
   "name": "@_pearofducks/rollup-plugin-dev",
   "version": "0.0.1",
   "description": "rollup development server",
-  "main": "index.js",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
   "scripts": {
-    "dev": "rollup -w -c"
+    "dev": "rollup -w -c",
+    "build": "rollup -c"
   },
+  "files": [ "dist/", "index.js" ],
   "keywords": [],
   "author": "Dave Honneffer <pearofducks@gmail.com>",
   "license": "MIT",
@@ -18,5 +21,8 @@
     "koa-route": "^3.2.0",
     "koa-static": "^5.0.0",
     "ms": "^2.1.2"
+  },
+  "devDependencies": {
+    "rollup": "^1.18.0"
   }
 }
