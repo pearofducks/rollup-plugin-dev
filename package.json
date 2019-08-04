@@ -1,0 +1,22 @@
+{
+  "name": "rollup-plugin-dev-server",
+  "version": "1.0.0",
+  "description": "rollup development server",
+  "main": "index.js",
+  "scripts": {
+    "dev": "rollup -w -c"
+  },
+  "keywords": [],
+  "author": "Dave Honneffer <pearofducks@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "colorette": "^1.1.0",
+    "date-time": "^3.1.0",
+    "koa": "^2.7.0",
+    "koa-better-http-proxy": "^0.2.4",
+    "koa-mount": "^4.0.0",
+    "koa-route": "^3.2.0",
+    "koa-static": "^5.0.0",
+    "ms": "^2.1.2"
+  }
+}
