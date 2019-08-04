@@ -1,5 +1,5 @@
 {
-  "name": "rollup-plugin-dev-server",
+  "name": "@_pearofducks/rollup-plugin-dev",
   "version": "0.0.1",
   "description": "rollup development server",
   "main": "index.js",
