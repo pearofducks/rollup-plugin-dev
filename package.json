@@ -1,6 +1,6 @@
 {
   "name": "@_pearofducks/rollup-plugin-dev",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "rollup development server",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -8,7 +8,10 @@
     "dev": "rollup -w -c",
     "build": "rollup -c"
   },
-  "files": [ "dist/", "index.js" ],
+  "files": [
+    "dist/",
+    "index.js"
+  ],
   "keywords": [],
   "author": "Dave Honneffer <pearofducks@gmail.com>",
   "license": "MIT",
