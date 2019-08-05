@@ -9,8 +9,7 @@
     "build": "rollup -c"
   },
   "files": [
-    "dist/",
-    "index.js"
+    "dist/"
   ],
   "keywords": [],
   "author": "Dave Honneffer <pearofducks@gmail.com>",
