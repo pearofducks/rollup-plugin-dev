@@ -30,8 +30,11 @@ const logger = async (ctx, next) => {
   const c = color[colorCodes[status] || 'reset']
   info(stamp(), c(bold(ctx.method)), ctx.originalUrl, c('•'), dim(ctx.status), dim(ms(Date.now() - start)))
 }
-const fallback = async (ctx) => {
-  if (ctx.accepts('html')) await send(ctx, typeof opts.spa === 'boolean' ? 'index.html' : opts.spa)
+const fallback = (opts) => async (ctx) => {
+  if (ctx.accepts('html')) {
+    if (!opts.silent) info(stamp(), dim('Serving fallback for'), ctx.originalUrl)
+    await send(ctx, typeof opts.spa === 'boolean' ? 'index.html' : opts.spa)
+  }
 }
 const printListenInfo = (server) => {
   const address = server.address()
@@ -51,7 +54,7 @@ export default (opts = {}) => ({
       const dirs = typeof opts === 'string' ? [opts] : (opts.dirs || ['.'])
       dirs.forEach(path => app.use(setupStatic(opts, path)))
       if (opts.proxy) Object.entries(opts.proxy).forEach(([src, dest]) => app.use(router.all(src, proxy(dest))))
-      if (opts.spa) app.use(router.get('*', fallback))
+      if (opts.spa) app.use(router.get('*', fallback(opts)))
       const server = app.listen({ port: (opts.port || 8080), host: opts.host })
       notice("serving [", dirs.join(','), "]")
       printListenInfo(server)

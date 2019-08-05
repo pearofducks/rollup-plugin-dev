@@ -5,7 +5,7 @@
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "scripts": {
-    "dev": "rollup -w -c",
+    "dev": "cd dev && rollup -w -c",
     "build": "rollup -c"
   },
   "files": [
