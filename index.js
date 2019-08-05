@@ -5,12 +5,18 @@ import mount from 'koa-mount'
 import send from 'koa-send'
 import router from 'koa-route'
 import proxy from 'koa-better-http-proxy'
-import { default as color, bold, green, blue, red } from 'colorette'
+import { default as color, bold, dim, green, blue, red } from 'colorette'
 import ms from 'ms'
 import dateTime from 'date-time'
 
 let app = null
 const { info, error } = console
+const colorCodes = {
+  5: 'red',
+  4: 'yellow',
+  3: 'cyan',
+  2: 'green'
+}
 
 const stamp = () => `[${dateTime()}]`
 const header = blue('⚡︎dev-server')
@@ -20,7 +26,13 @@ const logger = async (ctx, next) => {
   const start = Date.now()
   try { await next() }
   catch (e) { error(header, red(e)) }
-  info(stamp(), bold(ctx.method), ctx.originalUrl, ms(Date.now() - start))
+  const status = ctx.status / 100 | 0
+  const c = color[colorCodes[status] || 'reset']
+  const codeColor = status === 2 ? dim : c
+  info(stamp(), c(bold(ctx.method)), ctx.originalUrl, c('•'), codeColor(ctx.status), dim(ms(Date.now() - start)))
+}
+const fallback = async (ctx) => {
+  if (ctx.accepts('html')) await send(ctx, typeof opts.spa === 'boolean' ? 'index.html' : opts.spa)
 }
 const printListenInfo = (server) => {
   const address = server.address()
@@ -40,9 +52,7 @@ export default (opts = {}) => ({
       const dirs = typeof opts === 'string' ? [opts] : (opts.dirs || ['.'])
       dirs.forEach(path => app.use(setupStatic(opts, path)))
       if (opts.proxy) Object.entries(opts.proxy).forEach(([src, dest]) => app.use(router.all(src, proxy(dest))))
-
-      // needs to also detect when HTML is desired and only respond to that
-      if (opts.spa) app.use(router.get('*', async (ctx) => await send(ctx, typeof opts.spa === 'boolean' ? 'index.html' : opts.spa)))
+      if (opts.spa) app.use(router.get('*', fallback))
       const server = app.listen({ port: (opts.port || 8080), host: opts.host })
       notice("serving [", dirs.join(','), "]")
       printListenInfo(server)
