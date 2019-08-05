@@ -7,7 +7,10 @@ a development server for rollup
 this plugin:
 - uses Koa to provide the server and implement features
   - while this means there are dependencies, it should also be trivial to add/modify to suit individual needs (see `extend` option below!)
-- provides proxy support for endpoints
+- has additional features other plugins lack
+  - full proxy support
+  - support for a basepath in the URL
+
 
 ## install
 
