@@ -39,7 +39,7 @@ export default (opts = {}) => ({
       if (opts.extend) opts.extend(app, { router, proxy, send, serve, mount, color })
       const dirs = typeof opts === 'string' ? [opts] : (opts.dirs || ['.'])
       dirs.forEach(path => app.use(setupStatic(opts, path)))
-      if (opts.proxy) opts.proxy.entries(([src, dest]) => app.use(router.all(src, proxy(dest))))
+      if (opts.proxy) Object.entries(opts.proxy).forEach(([src, dest]) => app.use(router.all(src, proxy(dest))))
 
       // needs to also detect when HTML is desired and only respond to that
       if (opts.spa) app.use(router.get('*', async (ctx) => await send(ctx, typeof opts.spa === 'boolean' ? 'index.html' : opts.spa)))
