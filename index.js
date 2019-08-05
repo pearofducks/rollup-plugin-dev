@@ -47,7 +47,7 @@ export default (opts = {}) => ({
   name: 'dev-server',
   buildEnd() {
     if (!app) {
-      if (!process.env.ROLLUP_WATCH && !opts.force) return this.warn(header + " cowardly refusing to start without 'watch' mode in rollup or 'force' option set")
+      if (!process.env.ROLLUP_WATCH && !opts.force) return (opts.silent ? null : this.warn(header + " cowardly refusing to start without 'watch' mode in rollup or 'force' option set"))
       app = new Koa()
       if (!opts.silent) app.use(logger)
       if (opts.extend) opts.extend(app, { router, proxy, send, serve, mount, color })
