@@ -28,8 +28,7 @@ const logger = async (ctx, next) => {
   catch (e) { error(header, red(e)) }
   const status = ctx.status / 100 | 0
   const c = color[colorCodes[status] || 'reset']
-  const codeColor = status === 2 ? dim : c
-  info(stamp(), c(bold(ctx.method)), ctx.originalUrl, c('•'), codeColor(ctx.status), dim(ms(Date.now() - start)))
+  info(stamp(), c(bold(ctx.method)), ctx.originalUrl, c('•'), dim(ctx.status), dim(ms(Date.now() - start)))
 }
 const fallback = async (ctx) => {
   if (ctx.accepts('html')) await send(ctx, typeof opts.spa === 'boolean' ? 'index.html' : opts.spa)
