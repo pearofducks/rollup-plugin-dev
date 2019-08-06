@@ -103,10 +103,12 @@ enables full customization of the dev server
 example: `dev({ extend(app, modules) { app.use(modules.router.get('/foo', myHandler)) } })`<br>
 default: `undefined`
 
+_`app` is the [Koa instance](https://koajs.com/#application) used for the server_
+
 modules available:
-- `router`: koa-route
-- `proxy`: koa-better-http-proxy
-- `send`: koa-send
-- `serve`: koa-static
-- `mount`: koa-mount
-- `color`: colorette
+- `router`: [koa-route](https://github.com/koajs/route#example)
+- `proxy`: [koa-better-http-proxy](https://github.com/nsimmons/koa-better-http-proxy#usage)
+- `send`: [koa-send](https://github.com/koajs/send#example)
+- `serve`: [koa-static](https://github.com/koajs/static#example)
+- `mount`: [koa-mount](https://github.com/koajs/mount#examples)
+- `color`: [colorette](https://github.com/jorgebucaran/colorette#quickstart)
