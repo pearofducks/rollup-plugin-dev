@@ -6,7 +6,7 @@
   "module": "dist/index.esm.js",
   "scripts": {
     "dev": "cd dev && rollup -w -c",
-    "dev:build": "cd dev && rollup -c --silent",
+    "dev:build": "cd dev && rollup -c",
     "build": "rollup -c"
   },
   "files": [

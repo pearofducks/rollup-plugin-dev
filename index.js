@@ -11,17 +11,13 @@ import dateTime from 'date-time'
 
 let app = null
 const { info, error } = console
-const colorCodes = {
-  5: 'red',
-  4: 'yellow',
-  3: 'cyan',
-  2: 'green'
-}
-
+const colorCodes = { 5: 'red', 4: 'yellow', 3: 'cyan', 2: 'green' }
 const stamp = () => `[${dateTime()}]`
 const header = blue('⚡︎dev-server')
 const notice = (...args) => info(header, ...args)
-const setupStatic = ({ basePath }, path) => mount(basePath || '/', serve(path))
+const setupStatic = (app, { basePath }) => (path) => app.use(mount(basePath || '/', serve(path)))
+// TODO: add support for providing an array to use all of proxy options
+const setupProxy = (app) => ([src, dest]) => app.use(router.all(src, proxy(dest)))
 const logger = async (ctx, next) => {
   const start = Date.now()
   try { await next() }
@@ -32,8 +28,9 @@ const logger = async (ctx, next) => {
 }
 const fallback = (opts) => async (ctx) => {
   if (ctx.accepts('html')) {
-    if (!opts.silent) info(stamp(), dim('Serving fallback for'), ctx.originalUrl)
-    await send(ctx, typeof opts.spa === 'boolean' ? 'index.html' : opts.spa)
+    const fallbackFile = typeof opts.spa === 'boolean' ? 'index.html' : opts.spa
+    if (!opts.silent) info(stamp(), dim(`Serving ${fallbackFile} for`), ctx.originalUrl)
+    await send(ctx, fallbackFile)
   }
 }
 const printListenInfo = (server) => {
@@ -52,8 +49,8 @@ export default (opts = {}) => ({
       if (!opts.silent) app.use(logger)
       if (opts.extend) opts.extend(app, { router, proxy, send, serve, mount, color })
       const dirs = typeof opts === 'string' ? [opts] : (opts.dirs || ['.'])
-      dirs.forEach(path => app.use(setupStatic(opts, path)))
-      if (opts.proxy) Object.entries(opts.proxy).forEach(([src, dest]) => app.use(router.all(src, proxy(dest))))
+      dirs.forEach(setupStatic(app, opts))
+      if (opts.proxy) Object.entries(opts.proxy).forEach(setupProxy(app))
       if (opts.spa) app.use(router.get('*', fallback(opts)))
       const server = app.listen({ port: (opts.port || 8080), host: opts.host })
       notice("serving [", dirs.join(','), "]")
