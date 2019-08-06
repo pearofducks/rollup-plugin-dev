@@ -1,7 +1,7 @@
 {
   "name": "rollup-plugin-dev",
   "version": "0.0.1",
-  "description": "dumb name, nice development server",
+  "description": "a development server for rollup",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "scripts": {
@@ -12,7 +12,7 @@
   "files": [
     "dist/"
   ],
-  "keywords": [],
+  "keywords": ["rollup", "development", "static", "proxy", "server"],
   "author": "Dave Honneffer <pearofducks@gmail.com>",
   "license": "MIT",
   "dependencies": {
