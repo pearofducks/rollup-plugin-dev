@@ -23,11 +23,11 @@ yarn add --dev rollup-plugin-dev
 
 ## use
 
-```
+```js
 import dev from 'rollup-plugin-dev'
 
 export default {
-  plugins: [dev()]
+  plugins: [ dev() ]
 }
 ```
 
@@ -37,68 +37,68 @@ export default {
 
 directories to serve static files from
 
-example: `dev('dist')`
-example: `dev({ dirs: ['dist', 'lib'] })`
-default: `__dirname`
+example: `dev('dist')`<br>
+example: `dev({ dirs: ['dist', 'lib'] })`<br>
+default: `__dirname`<br>
 notes: when no other options are needed for this plugin, a shortcut is available to specify one folder
 
 #### basePath
 
 prefix all served files with a base path - e.g. serve from `/static` instead of `/`
 
-example: `dev({ basePath: '/static' })`
+example: `dev({ basePath: '/static' })`<br>
 default: `/`
 
 #### silent
 
 will silence all access log messages, as well as the warning printed when rollup is started outside of watch mode
 
-example: `dev({ silent: true })`
+example: `dev({ silent: true })`<br>
 default: `false`
 
 #### proxy
 
 proxy a path to an upstream service
 
-example: `dev({ proxy: { '/v3/*': 'https://polyfill.io/' } })`
-example: `dev({ proxy: { '/v3/*': ['https://polyfill.io/', { https: true }] } })`
-default: `undefined`
+example: `dev({ proxy: { '/v3/*': 'https://polyfill.io/' } })`<br>
+example: `dev({ proxy: { '/v3/*': ['https://polyfill.io/', { https: true }] } })`<br>
+default: `undefined`<br>
 notes: the value for a proxy can be either a string, or an array specifying the two arguments for [koa-better-http-proxy](https://github.com/nsimmons/koa-better-http-proxy#usage)
 
 #### spa
 
 serve a fallback page (for single-page apps)
 
-example: `dev({ spa: true })`
-example: `dev({ spa: 'path/to/fallback.html' })`
+example: `dev({ spa: true })`<br>
+example: `dev({ spa: 'path/to/fallback.html' })`<br>
 default: `false`
 
 #### port
 
 the port the server should listen on
 
-example: `dev({ port: 3000 })`
+example: `dev({ port: 3000 })`<br>
 default: `8080`
 
 #### host
 
 the host the server should listen on
 
-example: `dev({ host: '0.0.0.0' })`
+example: `dev({ host: '0.0.0.0' })`<br>
 default: `localhost`
 
 #### force
 
 force the server to start, even if rollup isn't in watch mode
 
-example: `dev({ force: true })`
+example: `dev({ force: true })`<br>
 default: `false`
 
 #### extend
 
 enables full customization of the dev server
 
-example: `dev({ extend(app, modules) { app.use(modules.router.get('/foo', myHandler)) } })`
+example: `dev({ extend(app, modules) { app.use(modules.router.get('/foo', myHandler)) } })`<br>
 default: `undefined`
 
 modules available:
