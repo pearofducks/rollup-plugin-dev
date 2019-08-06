@@ -40,7 +40,8 @@ directories to serve static files from
 example: `dev('dist')`<br>
 example: `dev({ dirs: ['dist', 'lib'] })`<br>
 default: `__dirname`<br>
-notes: when no other options are needed for this plugin, a shortcut is available to specify one folder
+
+_when no other options are needed for this plugin, a shortcut is available to specify one folder_
 
 #### basePath
 
@@ -63,7 +64,8 @@ proxy a path to an upstream service
 example: `dev({ proxy: { '/v3/*': 'https://polyfill.io/' } })`<br>
 example: `dev({ proxy: { '/v3/*': ['https://polyfill.io/', { https: true }] } })`<br>
 default: `undefined`<br>
-notes: the value for a proxy can be either a string, or an array specifying the two arguments for [koa-better-http-proxy](https://github.com/nsimmons/koa-better-http-proxy#usage)
+
+_the value for a proxy can be either a string, or an array specifying the two arguments for [koa-better-http-proxy](https://github.com/nsimmons/koa-better-http-proxy#usage)_
 
 #### spa
 
