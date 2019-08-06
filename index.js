@@ -16,8 +16,7 @@ const stamp = () => `[${dateTime()}]`
 const header = blue('⚡︎dev-server')
 const notice = (...args) => info(header, ...args)
 const setupStatic = (app, { basePath }) => (path) => app.use(mount(basePath || '/', serve(path)))
-// TODO: add support for providing an array to use all of proxy options
-const setupProxy = (app) => ([src, dest]) => app.use(router.all(src, proxy(dest)))
+const setupProxy = (app) => ([src, dest]) => app.use(router.all(src, proxy(...(Array.isArray(dest) ? dest : [dest]))))
 const logger = async (ctx, next) => {
   const start = Date.now()
   try { await next() }

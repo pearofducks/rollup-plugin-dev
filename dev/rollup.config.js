@@ -5,7 +5,9 @@ export default {
   output: { file: './bar.js', format: 'esm' },
   plugins: [
     dev({
-      silent: true
+      proxy: {
+        '/v3/*': ['https://polyfill.io/', { https: true, filter: (ctx) => ctx.method === 'GET' }]
+      }
     })
   ]
 }
