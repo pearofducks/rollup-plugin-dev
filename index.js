@@ -1,3 +1,4 @@
+import { existsSync as exists } from 'fs'
 import { format as urlFormat } from 'url'
 import Koa from 'koa'
 import serve from 'koa-static'
@@ -20,17 +21,21 @@ const setupProxy = (app) => ([src, dest]) => app.use(router.all(src, proxy(...(A
 const logger = async (ctx, next) => {
   const start = Date.now()
   try { await next() }
-  catch (e) { error(header, red(e)) }
+  catch (err) { error(err) }
   const status = ctx.status / 100 | 0
   const c = color[colorCodes[status] || 'reset']
   info(stamp(), c(bold(ctx.method)), ctx.originalUrl, c('•'), dim(ctx.status), dim(ms(Date.now() - start)))
 }
-const fallback = (opts) => async (ctx) => {
-  if (ctx.accepts('html')) {
-    const fallbackFile = typeof opts.spa === 'boolean' ? 'index.html' : opts.spa
-    if (!opts.silent) info(stamp(), dim(`Serving ${fallbackFile} for`), ctx.originalUrl)
-    await send(ctx, fallbackFile)
+function setupFallback (app, opts) {
+  const fallbackFile = typeof opts.spa === 'boolean' ? 'index.html' : opts.spa
+  if (!exists(fallbackFile)) return error(header, red('Fallback file'), red(bold(fallbackFile)), red('from the SPA option not found - not setting up fallback'))
+  const fallback = async (ctx) => {
+    if (ctx.accepts('html')) {
+      if (!opts.silent) info(stamp(), dim(`Serving ${fallbackFile} for`), ctx.originalUrl)
+      await send(ctx, fallbackFile)
+    }
   }
+  app.use(router.get('*', fallback))
 }
 const printListenInfo = (server) => {
   const address = server.address()
@@ -50,7 +55,7 @@ export default (opts = {}) => ({
       const dirs = typeof opts === 'string' ? [opts] : (opts.dirs || ['.'])
       dirs.forEach(setupStatic(app, opts))
       if (opts.proxy) Object.entries(opts.proxy).forEach(setupProxy(app))
-      if (opts.spa) app.use(router.get('*', fallback(opts)))
+      if (opts.spa) setupFallback(app, opts)
       const server = app.listen({ port: (opts.port || 8080), host: opts.host })
       notice("serving [", dirs.join(','), "]")
       printListenInfo(server)
