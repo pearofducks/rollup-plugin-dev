@@ -21,8 +21,9 @@ const setupStatic = (app, { basePath }) => (path) => app.use(mount(basePath || '
 const setupProxy = (app) => ([src, dest]) => app.use(router.all(src, proxy(...(Array.isArray(dest) ? dest : [dest]))))
 const logger = async (ctx, next) => {
   const start = Date.now()
-  try { await next() }
-  catch (err) { error(err) }
+  try {
+    await next()
+  } catch (err) { error(err) }
   const status = ctx.status / 100 | 0
   const c = color[colorCodes[status] || 'reset']
   info(stamp(), c(bold(ctx.method)), ctx.originalUrl, c('•'), dim(ctx.status), dim(ms(Date.now() - start)))

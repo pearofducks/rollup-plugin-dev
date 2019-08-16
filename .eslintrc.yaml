@@ -1,0 +1,29 @@
+root: true
+env:
+  es6: true
+  node: true
+parserOptions:
+  ecmaVersion: 2018
+  sourceType: module
+rules:
+  semi:
+    - error
+    - never
+  indent:
+    - error
+    - 2
+    - SwitchCase: 1
+  space-infix-ops:
+    - error
+  space-before-blocks:
+    - error
+  keyword-spacing:
+    - error
+  func-call-spacing:
+    - error
+  brace-style:
+    - error
+    - 1tbs
+    - allowSingleLine: true
+  arrow-spacing:
+    - error

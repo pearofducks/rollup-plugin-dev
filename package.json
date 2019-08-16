@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "cd dev && rollup -w -c",
     "dev:build": "cd dev && rollup -c",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "lint": "eslint --ignore-path .gitignore --ext .js ."
   },
   "files": [
     "dist/"
@@ -32,6 +33,7 @@
     "ms": "^2.1.2"
   },
   "devDependencies": {
+    "eslint": "^6.1.0",
     "rollup": "^1.18.0"
   }
 }
