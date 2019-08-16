@@ -2,14 +2,18 @@
 
 a development server for rollup
 
-### rationale
+### why this plugin?
 
-this plugin:
+if you just want to serve a folder of assets, or need only a couple other features; you probably want [rollup-plugin-serve](https://github.com/thgh/rollup-plugin-serve)
+
+compared to rollup-plugin-serve, this plugin:
 - uses Koa to provide the server and implement features
   - while this means there are dependencies, it should also be trivial to add/modify to suit individual needs (see `extend` option below!)
-- has additional features other plugins lack
+- has additional features that may be useful
+  - detailed logging of requests (see screenshot)
   - full proxy support
   - support for a basepath in the URL
+  - will automatically turn itself off (with a notification) for your production builds
 
 ## install
 
