@@ -1,3 +1,4 @@
+import { resolve as fullPath } from 'path'
 import { existsSync as exists } from 'fs'
 import { format as urlFormat } from 'url'
 import Koa from 'koa'
@@ -57,7 +58,7 @@ export default (opts = {}) => ({
       if (opts.proxy) Object.entries(opts.proxy).forEach(setupProxy(app))
       if (opts.spa) setupFallback(app, opts)
       const server = app.listen({ port: (opts.port || 8080), host: opts.host })
-      notice("serving [", dirs.join(','), "]")
+      dirs.forEach(d => notice("serving", bold(fullPath(d))))
       printListenInfo(server)
     }
   }

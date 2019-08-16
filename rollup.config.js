@@ -6,5 +6,18 @@ export default {
     { file: pkg.main, format: 'cjs' },
     { file: pkg.module, format: 'esm' }
   ],
-  external: ['fs', 'url', 'koa', 'koa-static', 'koa-mount', 'koa-send', 'koa-route', 'koa-better-http-proxy', 'colorette', 'ms', 'date-time']
+  external: [
+    'path',
+    'fs',
+    'url',
+    'koa',
+    'koa-static',
+    'koa-mount',
+    'koa-send',
+    'koa-route',
+    'koa-better-http-proxy',
+    'colorette',
+    'ms',
+    'date-time'
+  ]
 }
