@@ -30,7 +30,8 @@ const logger = async (ctx, next) => {
 }
 function setupFallback (app, opts) {
   const fallbackFile = typeof opts.spa === 'boolean' ? 'index.html' : opts.spa
-  if (!exists(fallbackFile)) return error(header, red('Fallback file'), red(bold(fallbackFile)), red('from the SPA option not found - not setting up fallback'))
+  if (!exists(fallbackFile)) return error(header, red('Fallback file'), red(bold(fullPath(fallbackFile))), red('from the SPA option not found - not setting up fallback'))
+  else notice("using fallback file", bold(fullPath(fallbackFile)))
   const fallback = async (ctx) => {
     if (ctx.accepts('html')) {
       if (!opts.silent) info(stamp(), dim(`Serving ${fallbackFile} for`), ctx.originalUrl)
@@ -57,9 +58,9 @@ export default (opts = {}) => ({
       const dirs = typeof opts === 'string' ? [opts] : (opts.dirs || ['.'])
       dirs.forEach(setupStatic(app, opts))
       if (opts.proxy) Object.entries(opts.proxy).forEach(setupProxy(app))
+      dirs.forEach(d => notice("serving", bold(fullPath(d))))
       if (opts.spa) setupFallback(app, opts)
       const server = app.listen({ port: (opts.port || 8080), host: opts.host })
-      dirs.forEach(d => notice("serving", bold(fullPath(d))))
       printListenInfo(server)
     }
   }
