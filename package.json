@@ -25,7 +25,7 @@
   "dependencies": {
     "colorette": "^1.1.0",
     "date-time": "^3.1.0",
-    "koa": "^2.7.0",
+    "koa": "^2.8.1",
     "koa-better-http-proxy": "^0.2.4",
     "koa-mount": "^4.0.0",
     "koa-route": "^3.2.0",
@@ -33,7 +33,7 @@
     "ms": "^2.1.2"
   },
   "devDependencies": {
-    "eslint": "^6.1.0",
-    "rollup": "^1.18.0"
+    "eslint": "^6.3.0",
+    "rollup": "^1.21.2"
   }
 }
