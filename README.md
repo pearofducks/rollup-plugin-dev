@@ -75,7 +75,7 @@ _the value for a proxy can be either a string, or an array specifying the two ar
 
 serve a fallback page (for single-page apps)
 
-example: `dev({ spa: true })`<br>
+example: `dev({ spa: true }) // will serve index.html`<br>
 example: `dev({ spa: 'path/to/fallback.html' })`<br>
 default: `false`
 
