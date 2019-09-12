@@ -2,6 +2,8 @@
 
 a development server for rollup
 
+![a screenshot of this plugin running](/.github/assets/screenshot.png?raw=true)
+
 ### why this plugin?
 
 if you just want to serve a folder of assets, or need only a couple other features; you probably want [rollup-plugin-serve](https://github.com/thgh/rollup-plugin-serve)
