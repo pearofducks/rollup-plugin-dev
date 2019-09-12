@@ -8,6 +8,8 @@
     "dev": "cd dev && rollup -w -c",
     "dev:build": "cd dev && rollup -c",
     "build": "rollup -c",
+    "version": "npm run build",
+    "postversion": "npm publish && git push --follow-tags",
     "lint": "eslint --ignore-path .gitignore --ext .js ."
   },
   "files": [
