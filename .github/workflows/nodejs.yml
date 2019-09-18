@@ -17,4 +17,5 @@ jobs:
     - name: Build
       run: |
         yarn
+        npm run test
         npm run build --if-present
