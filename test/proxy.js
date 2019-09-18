@@ -3,14 +3,14 @@ import request from 'supertest'
 import { app, initApp } from '../server'
 
 test.before(_ => {
-  initApp({ force: true, dirs: ['test/supporting'] }, true)
+  initApp({ force: true, proxy: { '/v3/*': ['polyfill.io', { https: true }] } }, true)
 })
 
-test('serves', async t => {
+test('proxies', async t => {
   const res = await request(app.callback())
-    .get('/200.html')
+    .get('/v3/polyfill.min.js')
     .expect(200)
-  t.is(res.text.trim(), 'success')
+  t.true(res.text.includes('Disable minification'))
 })
 
 test('404s', async t => {
