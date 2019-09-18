@@ -10,7 +10,8 @@
     "build": "rollup -c",
     "version": "npm run build",
     "postversion": "npm publish && git push --follow-tags",
-    "lint": "eslint --ignore-path .gitignore --ext .js ."
+    "lint": "eslint --ignore-path .gitignore --ext .js .",
+    "test": "ava --verbose"
   },
   "files": [
     "dist/"
@@ -35,7 +36,15 @@
     "ms": "^2.1.2"
   },
   "devDependencies": {
+    "ava": "^2.4.0",
     "eslint": "^6.3.0",
-    "rollup": "^1.21.2"
+    "esm": "^3.2.25",
+    "rollup": "^1.21.2",
+    "supertest": "^4.0.2"
+  },
+  "ava": {
+    "require": [
+      "esm"
+    ]
   }
 }
