@@ -47,7 +47,7 @@ const printListenInfo = (server) => {
   notice("listening on", bold(green(`http://${a}`)))
 }
 
-export function initApp(opts = {}, testing) {
+export async function initApp(opts = {}, testing) {
   const warn = (this && this.warn) || (() => {})
   if (!process.env.ROLLUP_WATCH && !opts.force) return (opts.silent ? null : warn(header + " cowardly refusing to start without 'watch' mode in rollup or 'force' option set"))
   app = new Koa()
@@ -60,6 +60,14 @@ export function initApp(opts = {}, testing) {
   if (opts.spa) setupFallback(app, opts)
   if (!testing) {
     const server = app.listen({ port: (opts.port || 8080), host: opts.host })
-    printListenInfo(server)
+    await {
+      then(ready, fail) {
+        server.on('error', fail)
+        server.on('listening', () => {
+          printListenInfo(server)
+          ready()
+        })
+      }
+    }
   }
 }
