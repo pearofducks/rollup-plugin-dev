@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-dev",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a development server for rollup",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
