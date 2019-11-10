@@ -28,7 +28,7 @@
   "dependencies": {
     "colorette": "^1.1.0",
     "date-time": "^3.1.0",
-    "koa": "^2.8.1",
+    "koa": "^2.11.0",
     "koa-better-http-proxy": "^0.2.4",
     "koa-mount": "^4.0.0",
     "koa-route": "^3.2.0",
@@ -37,9 +37,10 @@
   },
   "devDependencies": {
     "ava": "^2.4.0",
-    "eslint": "^6.3.0",
+    "eslint": "^6.6.0",
     "esm": "^3.2.25",
-    "rollup": "^1.21.2",
+    "rollup": "^1.26.3",
+    "sinon": "^7.5.0",
     "supertest": "^4.0.2"
   },
   "ava": {

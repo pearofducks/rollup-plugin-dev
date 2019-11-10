@@ -61,6 +61,7 @@ default: `/`
 will silence all access log messages, as well as the warning printed when rollup is started outside of watch mode
 
 example: `dev({ silent: true })`<br>
+example: `dev({ silent: 'very' }) // disables all output from this plugin`<br>
 default: `false`
 
 #### proxy
