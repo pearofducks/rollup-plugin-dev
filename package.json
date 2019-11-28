@@ -4,6 +4,10 @@
   "description": "a development server for rollup",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pearofducks/rollup-plugin-dev"
+  },
   "scripts": {
     "dev": "cd dev && rollup -w -c",
     "dev:build": "cd dev && rollup -c",

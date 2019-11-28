@@ -66,15 +66,6 @@ export async function initApp(opts = {}, testing) {
   dirs.forEach(d => notice("serving", bold(fullPath(d))))
   if (opts.spa) setupFallback(app, opts)
   if (!testing) {
-    const server = app.listen({ port: (opts.port || 8080), host: opts.host })
-    await {
-      then(ready, fail) {
-        server.on('error', fail)
-        server.on('listening', () => {
-          printListenInfo(server)
-          ready()
-        })
-      }
-    }
+    const server = app.listen({ port: (opts.port || 8080), host: opts.host }, () => printListenInfo(server))
   }
 }
