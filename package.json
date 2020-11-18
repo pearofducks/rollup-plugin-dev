@@ -30,10 +30,10 @@
   "author": "Dave Honneffer <pearofducks@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "colorette": "^1.1.0",
+    "colorette": "^1.2.1",
     "date-time": "^3.1.0",
-    "koa": "^2.11.0",
-    "koa-better-http-proxy": "^0.2.4",
+    "koa": "^2.13.0",
+    "koa-better-http-proxy": "^0.2.5",
     "koa-mount": "^4.0.0",
     "koa-route": "^3.2.0",
     "koa-send": "^5.0.1",
@@ -41,12 +41,12 @@
     "ms": "^2.1.2"
   },
   "devDependencies": {
-    "ava": "^3.8.1",
-    "eslint": "^6.8.0",
+    "ava": "^3.13.0",
+    "eslint": "^7.13.0",
     "esm": "^3.2.25",
-    "rollup": "^2.7.3",
-    "sinon": "^9.0.2",
-    "supertest": "^4.0.2"
+    "rollup": "^2.33.3",
+    "sinon": "^9.2.1",
+    "supertest": "^6.0.1"
   },
   "ava": {
     "require": [
