@@ -1,11 +1,8 @@
 import fp from 'fastify-plugin'
 
-export default fp(async (server, opts) => {
-  if (!opts.spa) return
-  const fallbackFile = opts.spa === 'boolean' ? 'index.html' : opts.spa
-  const spaHandler = async (req, reply) => {
-    // if accepts html, send the fallback file
-  }
-
+export default fp(async (server, { spa }) => {
+  if (!spa) return
+  const fallbackFile = (typeof spa === 'boolean') ? 'index.html' : spa
+  const spaHandler = async (_, reply) => reply.sendFile(fallbackFile)
   server.setNotFoundHandler(spaHandler)
 })

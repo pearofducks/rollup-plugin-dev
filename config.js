@@ -13,7 +13,9 @@ const schema = Joi.alternatives().try(
     dirs: Joi.array().items(Joi.string()),
     spa: [Joi.boolean(), Joi.string()],
     port: Joi.number().port(),
-    host: [Joi.string().ip(), Joi.string().hostname()]
+    host: [Joi.string().ip(), Joi.string().hostname()],
+    basePath: Joi.string().uri({ relativeOnly: true }),
+    extend: Joi.function()
   })
 )
 
@@ -22,7 +24,14 @@ const defaults = {
   dirs: ['.'],
   spa: false,
   port: 8080,
-  host: 'localhost'
+  host: 'localhost',
+  basePath: undefined,
+  extend: undefined
+}
+
+export const serverOpts = {
+  ignoreTrailingSlash: true,
+  disableRequestLogging: true
 }
 
 export const normalize = (rollupOptions) => {

@@ -8,7 +8,7 @@ export default {
       host: '0.0.0.0',
       spa: true,
       proxy: [
-        { from: '/llama', to: 'https://www.google.com' }
+        { from: '/llama', to: 'http://localhost:8000' }
       ]
     })
   ]
