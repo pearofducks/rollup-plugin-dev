@@ -58,21 +58,20 @@ default: `/`
 
 #### silent
 
-will silence all access log messages, as well as the warning printed when rollup is started outside of watch mode
+will silence all log messages, as well as the warning printed when rollup is started outside of watch mode
 
 example: `dev({ silent: true })`<br>
-example: `dev({ silent: 'very' }) // disables all output from this plugin`<br>
 default: `false`
 
 #### proxy
 
 proxy a path to an upstream service
 
-example: `dev({ proxy: { '/v3/*': 'https://polyfill.io/' } })`<br>
-example: `dev({ proxy: { '/v3/*': ['https://polyfill.io/', { https: true }] } })`<br>
+example: `dev({ proxy: [{ from: '/api', to: 'http://localhost:9000/resources' }] })`<br>
+example: `dev({ proxy: [{ from: '/api', to: 'http://localhost:9000/resources', opts: { preHandler: myPreHandler } }] })`<br>
 default: `undefined`<br>
 
-_the value for a proxy can be either a string, or an array specifying the two arguments for [koa-better-http-proxy](https://github.com/nsimmons/koa-better-http-proxy#usage)_
+_`opts` can contain any valid options for [fastify-http-proxy](https://github.com/fastify/fastify-http-proxy)_
 
 #### spa
 
@@ -82,12 +81,16 @@ example: `dev({ spa: true }) // will serve index.html`<br>
 example: `dev({ spa: 'path/to/fallback.html' })`<br>
 default: `false`
 
+_if a path is provided, it must be inside of one of the directories being served_
+
 #### port
 
 the port the server should listen on
 
 example: `dev({ port: 3000 })`<br>
 default: `8080`
+
+_the server will automatically listen on the first available port after 8080 if the specified/default port is taken_
 
 #### host
 
@@ -105,17 +108,7 @@ default: `false`
 
 #### extend
 
-enables full customization of the dev server
+enables full customization of the dev server, expects a [Fastify plugin](https://www.fastify.io/docs/latest/Plugins/)
 
-example: `dev({ extend(app, modules) { app.use(modules.router.get('/foo', myHandler)) } })`<br>
+example: `dev({ extend: fp(async (server) => server.register(myPlugin)) })`<br>
 default: `undefined`
-
-_`app` is the [Koa instance](https://koajs.com/#application) used for the server_
-
-modules available:
-- `router`: [koa-route](https://github.com/koajs/route#example)
-- `proxy`: [koa-better-http-proxy](https://github.com/nsimmons/koa-better-http-proxy#usage)
-- `send`: [koa-send](https://github.com/koajs/send#example)
-- `serve`: [koa-static](https://github.com/koajs/static#example)
-- `mount`: [koa-mount](https://github.com/koajs/mount#examples)
-- `color`: [colorette](https://github.com/jorgebucaran/colorette#quickstart)
