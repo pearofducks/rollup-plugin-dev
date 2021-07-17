@@ -7,10 +7,9 @@ export default {
     dev({
       host: '0.0.0.0',
       spa: true,
-      proxy: {
-        '/v3/*': ['polyfill.io', { https: true, filter: (ctx) => ctx.method === 'GET' }],
-        '/posts*': ['https://jsonplaceholder.typicode.com/posts', { https: true }]
-      }
+      proxy: [
+        { from: '/llama', to: 'https://www.google.com' }
+      ]
     })
   ]
 }

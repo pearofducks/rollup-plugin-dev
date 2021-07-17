@@ -3,14 +3,6 @@ import proxy from './src/proxy.js'
 import dirs from './src/dirs.js'
 import spa from './src/spa.js'
 
-const defaults = {
-  proxy: [],
-  dirs: ['.'],
-  spa: false,
-  port: 8080,
-  host: 'localhost'
-}
-
 export async function init(serverOpts, args) {
   // TODO: merge these with sane defaults like ignoring slash
   const server = Fastify(serverOpts)
