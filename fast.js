@@ -12,7 +12,8 @@ const defaults = {
 }
 
 export async function init(serverOpts, args) {
-  const server = Fastify()
+  // TODO: merge these with sane defaults like ignoring slash
+  const server = Fastify(serverOpts)
   // TODO
   // need to normalize opts into an object with defaults (or use autoload)
   // const dirs = typeof opts === 'string' ? [opts] : (opts.dirs || ['.'])
@@ -28,4 +29,3 @@ export async function init(serverOpts, args) {
 
   return server
 }
-
