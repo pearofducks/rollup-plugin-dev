@@ -16,9 +16,3 @@ export const schema = Joi.alternatives().try(
     host: [Joi.string().ip(), Joi.string().hostname()]
   })
 )
-
-console.log(schema.validate({
-  proxy: [{ from: '/foo', to: 'http://localhost:8081/api' }],
-  spa: true,
-  host: '0.0.0.0'
-}))
