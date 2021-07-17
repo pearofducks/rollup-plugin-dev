@@ -49,6 +49,12 @@ default: `__dirname`<br>
 
 _when no other options are needed for this plugin, a shortcut is available to specify one folder_
 
+#### dirname
+
+the path to resolve any relative `dirs` from
+
+# FIXME
+
 #### basePath
 
 prefix all served files with a base path - e.g. serve from `/static` instead of `/`

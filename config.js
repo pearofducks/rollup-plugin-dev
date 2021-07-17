@@ -11,6 +11,7 @@ const schema = Joi.alternatives().try(
   Joi.object({
     proxy: Joi.array().items(proxyItem),
     dirs: Joi.array().items(Joi.string()),
+    dirname: Joi.string(),
     spa: [Joi.boolean(), Joi.string()],
     port: Joi.number().port(),
     host: [Joi.string().ip(), Joi.string().hostname()],
@@ -19,19 +20,21 @@ const schema = Joi.alternatives().try(
   })
 )
 
-const defaults = {
+export const serverDefaults = {
+  ignoreTrailingSlash: true,
+  disableRequestLogging: true
+}
+
+export const defaults = {
   proxy: [],
   dirs: ['.'],
   spa: false,
   port: 8080,
   host: 'localhost',
+  server: serverDefaults,
   basePath: undefined,
-  extend: undefined
-}
-
-export const serverOpts = {
-  ignoreTrailingSlash: true,
-  disableRequestLogging: true
+  extend: undefined,
+  dirname: undefined
 }
 
 export const normalize = (rollupOptions) => {
