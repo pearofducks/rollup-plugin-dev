@@ -11,7 +11,11 @@ const Spa = suite('Spa')
 Spa.before(async t => {
   t.upstreamServer = Fastify()
   t.upstreamErrorText = 'Upstream 404'
-  t.upstreamServer.get('/404', async (_, reply) => reply.status(404).send(t.upstreamErrorText))
+  t.upstreamServer.get('/404', async (_, reply) => {
+    reply.status(404)
+    reply.raw.statusMessage = 'lol'
+    return reply.send(t.upstreamErrorText)
+  })
   await t.upstreamServer.ready()
   await t.upstreamServer.listen(12345)
 
@@ -45,6 +49,7 @@ Spa(`won't 404`, async t => {
 
 Spa(`allows 404s from upstream API`, async t => {
   const res = await t.server.inject().get('/404-proxy')
+  console.log(res)
   assert.is(res.statusCode, 404)
   assert.is(res.body, t.upstreamErrorText)
 })
