@@ -21,7 +21,7 @@
     "version": "npm run build",
     "postversion": "npm publish && git push --follow-tags",
     "lint": "eslint --ignore-path .gitignore --ext .js .",
-    "test": "ava --verbose"
+    "test": "node test"
   },
   "files": [
     "dist/"
@@ -39,7 +39,7 @@
     "colorette": "^1.2.2",
     "date-time": "^4.0.0",
     "drnm": "^0.9.0",
-    "fastify": "^3.18.0",
+    "fastify": "^3.19.1",
     "fastify-autoload": "^3.8.0",
     "fastify-http-proxy": "^6.0.0",
     "fastify-plugin": "^3.0.0",
@@ -49,8 +49,8 @@
     "ms": "^2.1.3"
   },
   "devDependencies": {
-    "eslint": "^7.29.0",
-    "rollup": "^2.52.3",
+    "eslint": "^7.31.0",
+    "rollup": "^2.53.2",
     "sinon": "^11.1.1",
     "uvu": "^0.5.1"
   }
