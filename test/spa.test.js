@@ -7,11 +7,11 @@ import drnm from 'drnm'
 
 const __dirname = drnm(import.meta.url)
 const Spa = suite('Spa')
+const upstreamErrorText = 'Upstream 404'
 
 Spa.before(async t => {
   t.upstreamServer = Fastify()
-  t.upstreamErrorText = 'Upstream 404'
-  t.upstreamServer.get('/404', async (_, reply) => reply.code(404).send(t.upstreamErrorText))
+  t.upstreamServer.get('/404', async (_, reply) => reply.code(404).send(upstreamErrorText))
   await t.upstreamServer.ready()
   await t.upstreamServer.listen(12345)
 
@@ -46,7 +46,7 @@ Spa(`won't 404`, async t => {
 Spa(`allows 404s from upstream API`, async t => {
   const res = await t.server.inject().get('/404-proxy')
   assert.is(res.statusCode, 404)
-  assert.is(res.body, t.upstreamErrorText)
+  assert.is(res.body, upstreamErrorText)
 })
 
 // must be run from package.json or project root
