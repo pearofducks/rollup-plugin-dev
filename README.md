@@ -112,6 +112,15 @@ force the server to start, even if rollup isn't in watch mode
 example: `dev({ force: true })`<br>
 default: `false`
 
+#### server
+
+modify options the Fastify server is booted with - accepts any valid [Fastify server attribute](https://www.fastify.io/docs/latest/Server)
+
+example: `dev({ server: { connectionTimeout: 3000 } })`<br>
+default: see `config.js` and the `serverDefaults` export
+
+_here be dragons - because modifying these options can wildly change server behavior, this is supported on an 'as is' basis only_
+
 #### extend
 
 enables full customization of the dev server, expects a [Fastify plugin](https://www.fastify.io/docs/latest/Plugins/)
