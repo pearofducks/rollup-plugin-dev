@@ -1,5 +1,4 @@
 import { init } from './src/init.js'
-import { serverOpts } from './config.js'
 import getPort from 'get-port'
 
 export async function boot(config) {
