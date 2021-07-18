@@ -6,16 +6,14 @@ a development server for rollup
 
 ### why this plugin?
 
-if you just want to serve a folder of assets, or need only a couple other features; you probably want [rollup-plugin-serve](https://github.com/thgh/rollup-plugin-serve)
-
 compared to rollup-plugin-serve, this plugin:
-- uses Koa to provide the server and implement features
+- uses Fastify to provide the server and implement features
   - while this means there are dependencies, it should also be trivial to add/modify to suit individual needs (see `extend` option below!)
 - has additional features that may be useful
   - detailed logging of requests (see screenshot)
   - full proxy support
   - support for a basepath in the URL
-  - will automatically turn itself off (with a notification) for your production builds
+  - will automatically turn itself off when _watch_ mode isn't enabled
 
 ## install
 
@@ -33,7 +31,9 @@ yarn add --dev rollup-plugin-dev
 import dev from 'rollup-plugin-dev'
 
 export default {
-  plugins: [ dev() ]
+  plugins: [
+    dev()
+  ]
 }
 ```
 
@@ -47,13 +47,7 @@ example: `dev('dist')`<br>
 example: `dev({ dirs: ['dist', 'lib'] })`<br>
 default: `__dirname`<br>
 
-_when no other options are needed for this plugin, a shortcut is available to specify one folder_
-
-#### dirname
-
-the path to resolve any relative `dirs` from
-
-# FIXME
+_when no other options are needed, a shortcut is available to specify one folder_
 
 #### basePath
 
@@ -87,7 +81,7 @@ example: `dev({ spa: true }) // will serve index.html`<br>
 example: `dev({ spa: 'path/to/fallback.html' })`<br>
 default: `false`
 
-_if a path is provided, it must be inside of one of the directories being served_
+_if a path is provided, it should be relative to one of the `dirs` being served_
 
 #### port
 
@@ -111,6 +105,15 @@ force the server to start, even if rollup isn't in watch mode
 
 example: `dev({ force: true })`<br>
 default: `false`
+
+#### dirname
+
+the path to resolve any relative `dirs` from
+
+example: `dev({ dirname: '/Users/MyUser/Development/my-project' })`<br>
+default: `undefined`
+
+_this is generally not needed if one is running Rollup from package.json's `scripts`_
 
 #### server
 
