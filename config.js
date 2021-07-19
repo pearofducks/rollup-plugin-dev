@@ -10,6 +10,7 @@ const proxyItem = Joi.object({
 const schema = Joi.alternatives().try(
   Joi.string(),
   Joi.object({
+    silent: Joi.boolean(),
     proxy: Joi.array().items(proxyItem),
     dirs: Joi.array().items(Joi.string()),
     dirname: Joi.string(),
@@ -36,6 +37,7 @@ export const defaults = {
   spa: false,
   port: 8080,
   host: 'localhost',
+  silent: false,
   server: {
     ...pluginServer,
     ...serverDefaults
@@ -47,6 +49,8 @@ export const defaults = {
 
 export const normalize = (rollupOptions) => {
   const parsed = Joi.attempt(rollupOptions, schema)
-  const config = (typeof parsed === 'string') ? { dirs: [parsed] } : parsed
-  return Object.assign({}, defaults, config)
+  const normalized = (typeof parsed === 'string') ? { dirs: [parsed] } : parsed
+  const config = Object.assign({}, defaults, normalized)
+  if (config.silent) config.server.logger = false
+  return config
 }

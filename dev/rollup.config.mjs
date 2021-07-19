@@ -7,6 +7,7 @@ export default {
     dev({
       // host: '0.0.0.0',
       spa: true,
+      silent: true,
       proxy: [
         { from: '/llama', to: 'http://localhost:8000' }
       ]
