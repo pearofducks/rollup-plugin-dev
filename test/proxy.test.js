@@ -24,7 +24,7 @@ Proxy.before(async t => {
       { from: '/api', to: 'http://localhost:12345' },
       { from: '/just-json', to: 'http://localhost:12345/json' }
     ],
-    server: serverDefaults
+    server: { ...serverDefaults }
   })
 })
 

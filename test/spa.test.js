@@ -51,7 +51,7 @@ Spa(`allows 404s from upstream API`, async t => {
 
 // must be run from package.json or project root
 Spa('works without dirname', async () => {
-  const server = await init({ dirs: ['test/support'], spa: '200.html', server: serverDefaults })
+  const server = await init({ dirs: ['test/support'], spa: '200.html', server: { ...serverDefaults } })
   const fileRes = await server.inject().get('/200.html')
   assert.is(fileRes.statusCode, 200)
   const spaRes = await server.inject().get('/404.html')

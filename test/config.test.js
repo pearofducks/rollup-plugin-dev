@@ -3,12 +3,15 @@ import * as assert from 'uvu/assert'
 import { normalize, serverDefaults } from '#config'
 
 const Config = suite('Config')
+const containsAllServerDefaults = (config) => Object.entries(serverDefaults).forEach(([k, v]) => {
+  assert.is(config.server[k], v)
+})
 
 Config('has sane defaults', () => {
   const config = normalize()
   assert.is(config.dirs[0], '.')
   assert.is(config.port, 8080)
-  assert.is(config.server, serverDefaults)
+  containsAllServerDefaults(config)
 })
 
 Config('normalizes a directory string', () => {
@@ -34,9 +37,7 @@ Config('config object can have server options', () => {
     }
   })
   assert.is(config.server.https, true)
-  Object.entries(serverDefaults).forEach(([k, v]) => {
-    assert.is(config.server[k], v)
-  })
+  containsAllServerDefaults(config)
   assert.is(config.port, 9090)
 })
 

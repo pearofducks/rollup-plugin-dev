@@ -5,12 +5,15 @@ export default {
   output: { file: './bar.js', format: 'esm' },
   plugins: [
     dev({
-      // host: '0.0.0.0',
+      host: '0.0.0.0',
       spa: true,
-      silent: true,
+      silent: false,
       proxy: [
-        { from: '/llama', to: 'http://localhost:8000' }
+        { from: '/api', to: 'http://localhost:8000' }
       ]
     })
-  ]
+  ],
+  watch: {
+    clearScreen: false
+  }
 }

@@ -1,4 +1,5 @@
 import Joi from 'joi'
+import { mergeDeepRight } from 'ramda'
 import { prettifier } from './src/logger.js'
 
 const proxyItem = Joi.object({
@@ -18,18 +19,19 @@ const schema = Joi.alternatives().try(
     port: Joi.number().port(),
     host: [Joi.string().ip(), Joi.string().hostname()],
     basePath: Joi.string().uri({ relativeOnly: true }),
-    extend: Joi.function()
+    extend: Joi.function(),
+    server: Joi.object()
   })
 )
 
-export const serverDefaults = {
+export const serverDefaults = Object.freeze({
   ignoreTrailingSlash: true,
   disableRequestLogging: true
-}
+})
 
-const pluginServer = {
+const pluginServer = Object.freeze({
   logger: { prettyPrint: { suppressFlushSyncWarning: true }, prettifier }
-}
+})
 
 export const defaults = {
   proxy: [],
@@ -47,10 +49,12 @@ export const defaults = {
   dirname: undefined
 }
 
-export const normalize = (rollupOptions) => {
+export const normalize = (rollupOptions = {}) => {
   const parsed = Joi.attempt(rollupOptions, schema)
   const normalized = (typeof parsed === 'string') ? { dirs: [parsed] } : parsed
+  const serverConfig = Object.assign({}, defaults.server, normalized.server)
   const config = Object.assign({}, defaults, normalized)
+  config.server = serverConfig
   if (config.silent) config.server.logger = false
   return config
 }

@@ -11,7 +11,7 @@ Dirs.before(async t => {
   t.server = await init({
     dirs: ['support'],
     dirname: __dirname,
-    server: serverDefaults
+    server: { ...serverDefaults }
   })
 })
 
@@ -32,7 +32,7 @@ Dirs('404s', async t => {
 
 // must be run from package.json or project root
 Dirs('works without dirname', async () => {
-  const server = await init({ dirs: ['test/support'], server: serverDefaults })
+  const server = await init({ dirs: ['test/support'], server: { ...serverDefaults } })
   const res = await server.inject().get('/200.html')
   assert.is(res.statusCode, 200)
 })
