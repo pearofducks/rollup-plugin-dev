@@ -1,4 +1,4 @@
-import dev from '../index'
+import dev from '../index.js'
 
 export default {
   input: './foo.js',

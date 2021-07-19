@@ -1,4 +1,5 @@
 import Joi from 'joi'
+import { prettifier } from './src/logger.js'
 
 const proxyItem = Joi.object({
   from: Joi.string().uri({ relativeOnly: true }),
@@ -25,13 +26,20 @@ export const serverDefaults = {
   disableRequestLogging: true
 }
 
+const pluginServer = {
+  logger: { prettyPrint: { suppressFlushSyncWarning: true }, prettifier }
+}
+
 export const defaults = {
   proxy: [],
   dirs: ['.'],
   spa: false,
   port: 8080,
   host: 'localhost',
-  server: serverDefaults,
+  server: {
+    ...pluginServer,
+    ...serverDefaults
+  },
   basePath: undefined,
   extend: undefined,
   dirname: undefined

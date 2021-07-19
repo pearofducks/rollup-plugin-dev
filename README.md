@@ -6,7 +6,7 @@ a development server for rollup
 
 ### why this plugin?
 
-compared to rollup-plugin-serve, this plugin:
+compared to other plugins, this plugin:
 - uses Fastify to provide the server and implement features
   - while this means there are dependencies, it should also be trivial to add/modify to suit individual needs (see `extend` option below!)
 - has additional features that may be useful

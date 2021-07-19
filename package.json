@@ -42,20 +42,20 @@
   "dependencies": {
     "colorette": "^1.2.2",
     "date-time": "^4.0.0",
-    "drnm": "^0.9.0",
     "fastify": "^3.19.1",
-    "fastify-autoload": "^3.8.0",
     "fastify-http-proxy": "^6.0.0",
     "fastify-plugin": "^3.0.0",
+    "fastify-request-timing": "^1.0.1",
     "fastify-static": "^4.2.2",
+    "femtocolor": "^2.0.2",
     "get-port": "^5.1.1",
     "joi": "^17.4.1",
     "ms": "^2.1.3"
   },
   "devDependencies": {
+    "drnm": "^0.9.0",
     "eslint": "^7.31.0",
     "rollup": "^2.53.2",
-    "sinon": "^11.1.1",
     "uvu": "^0.5.1"
   }
 }
