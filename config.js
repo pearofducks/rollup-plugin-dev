@@ -1,5 +1,4 @@
 import Joi from 'joi'
-import { mergeDeepRight } from 'ramda'
 import { prettifier } from './src/logger.js'
 
 const proxyItem = Joi.object({
