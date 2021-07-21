@@ -11,15 +11,15 @@
   },
   "imports": {
     "#init": "./src/init.js",
-    "#config": "./config.js"
+    "#config": "./config.js",
+    "#plugin": "./index.js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/pearofducks/rollup-plugin-dev"
   },
   "scripts": {
-    "dev": "cd examples && rollup -w -c",
-    "dev:build": "cd examples && rollup -c",
+    "example:basic": "cd examples/basic && rollup -w -c",
     "build": "rollup -c",
     "preversion": "npm run lint && npm run build",
     "version": "npm publish",

@@ -11,6 +11,7 @@ const schema = Joi.alternatives().try(
   Joi.string(),
   Joi.object({
     silent: Joi.boolean(),
+    force: Joi.boolean(),
     proxy: Joi.array().items(proxyItem),
     dirs: Joi.array().items(Joi.string()),
     dirname: Joi.string(),
@@ -35,10 +36,11 @@ const pluginServer = Object.freeze({
 export const defaults = {
   proxy: [],
   dirs: ['.'],
-  spa: false,
   port: 8080,
   host: 'localhost',
+  spa: false,
   silent: false,
+  force: false,
   server: {
     ...pluginServer,
     ...serverDefaults
