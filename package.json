@@ -40,7 +40,6 @@
   "author": "Dave Honneffer <pearofducks@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "colorette": "^1.2.2",
     "date-time": "^4.0.0",
     "fastify": "^3.19.1",
     "fastify-http-proxy": "^6.0.0",
