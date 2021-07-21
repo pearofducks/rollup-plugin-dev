@@ -7,6 +7,8 @@ async function logJson(path) {
   el.append(JSON.stringify(json))
 }
 
-await logJson('/api/start')
-await logJson('/api/finish')
-await logJson('/api')
+(async () => {
+  await logJson('/api/start')
+  await logJson('/api/finish')
+  await logJson('/api')
+})()
