@@ -5,7 +5,7 @@ import { bold, blue, dim, yellow, red, cyan, green } from 'femtocolor'
 
 const EOL = '\n'
 const colorCodes = { 5: red, 4: yellow, 3: cyan, 2: green }
-const getColor = status => colorCodes[status / 100 | 0]
+const getColor = status => colorCodes[Math.trunc(status / 100)]
 
 export const responseLogger = fp(async server => {
   const logResponse = async (req, reply) => {
@@ -29,8 +29,7 @@ export const prettifier = () => entry => {
       entry.msg = startup[0] + 'listening on' + bold(green(startup[1]))
     }
     const output = []
-    output.push(`[${dateTime()}]`)
-    output.push(entry.msg)
+    output.push(`[${dateTime()}]`, entry.msg)
     return output.join(' ') + EOL
   }
 }

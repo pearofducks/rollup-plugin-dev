@@ -12,7 +12,7 @@ class VueApp extends HTMLElement {
     this.shadow.innerHTML = `
       <div id="app"></div>
     `
-    createApp(App).mount(this.shadow.getElementById('app'))
+    createApp(App).mount(this.shadow.querySelector('#app'))
   }
 }
 
