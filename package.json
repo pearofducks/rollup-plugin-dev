@@ -4,6 +4,7 @@
   "description": "a development server for rollup",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
+  "types": "types/index.d.ts",
   "type": "module",
   "exports": {
     "import": "./dist/index.mjs",
