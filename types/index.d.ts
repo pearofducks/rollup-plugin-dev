@@ -10,7 +10,7 @@ export interface ProxyItem {
 export interface DevOptions {
   silent?: boolean;
   force?: boolean;
-  proxy: [ProxyItem];
+  proxy: ProxyItem[];
   dirs: [string];
   dirname: string;
   spa: (boolean | string);
