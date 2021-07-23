@@ -23,7 +23,6 @@ export const header = blue('⚡︎dev-server')
 export const prettifier = () => entry => {
   if (entry.reqId) return
   if (entry.msg) {
-    // console.log("ENTRY", entry)
     if (entry.msg.includes('Server listening')) {
       const startup = entry.msg.replace('Server listening', header).split('at')
       entry.msg = startup[0] + 'listening on' + bold(green(startup[1]))
