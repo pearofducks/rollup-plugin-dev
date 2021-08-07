@@ -20,7 +20,8 @@
     "url": "https://github.com/pearofducks/rollup-plugin-dev"
   },
   "scripts": {
-    "example:basic": "cd examples/basic && rollup -w -c",
+    "example:proxy": "cd examples/proxy && rollup -w -c",
+    "example:spa": "cd examples/spa && rollup -w -c",
     "build": "rollup -c",
     "preversion": "npm run lint && npm run build",
     "version": "npm publish",

@@ -1,11 +1,13 @@
 import { normalize } from './config.js'
 import { boot } from './server.js'
+import { deprecate } from './src/deprecation.js'
 
 export default (opts = {}) => {
   let booted = false
   return {
     name: 'dev-server',
     async writeBundle() {
+      deprecate.bind(this)(opts)
       if (booted) return
       try {
         const config = normalize(opts)
