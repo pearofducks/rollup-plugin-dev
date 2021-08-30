@@ -1,5 +1,5 @@
 import fp from 'fastify-plugin'
-import dateTime from 'date-time'
+import dateTime from './_date-time.js'
 import ms from 'ms'
 import { bold, blue, dim, yellow, red, cyan, green } from 'femtocolor'
 
