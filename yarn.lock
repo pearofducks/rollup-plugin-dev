@@ -609,10 +609,10 @@ fastify-reply-from@^6.0.0:
     tiny-lru "^7.0.6"
     undici "^4.0.0"
 
-fastify-request-timing@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/fastify-request-timing/-/fastify-request-timing-2.0.0.tgz#95ee259cf77bb6de86f3ef87e83001eded2e08ad"
-  integrity sha512-6TW1Tj+tLtbA4he0ijpujLsdeSGlZaPxxX1TBRMQ8/D+NqZ2wlccPLK5Gs+bnbhpfJdhv4VLkxSKQxWFA4o7CA==
+fastify-request-timing@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/fastify-request-timing/-/fastify-request-timing-2.0.1.tgz#1683f096704cc365184e3f2eb50f611d0df732b2"
+  integrity sha512-KqjUJG1z0tTmGiW5Hy3BHW75TMK/bqscHbu5VBIbVVU5G7fZtfAUc0mpPud1c6EubckbuuV3F1LaAeU+sjg+iw==
   dependencies:
     fastify-plugin "^3.0.0"
 

@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-dev",
-  "version": "2.0.0-beta.2",
+  "version": "2.0.0-beta.3",
   "description": "a development server for rollup",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
@@ -47,7 +47,7 @@
     "fastify": "^3.20.2",
     "fastify-http-proxy": "^6.2.0",
     "fastify-plugin": "^3.0.0",
-    "fastify-request-timing": "^2.0.0",
+    "fastify-request-timing": "^2.0.1",
     "fastify-static": "^4.2.3",
     "femtocolor": "^2.0.2",
     "get-port": "^5.1.1",
