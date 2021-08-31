@@ -20,7 +20,8 @@ const schema = Joi.alternatives().try(
     host: [Joi.string().ip(), Joi.string().hostname()],
     basePath: Joi.string().uri({ relativeOnly: true }),
     extend: Joi.function(),
-    server: Joi.object()
+    server: Joi.object(),
+    onListen: Joi.function()
   })
 )
 

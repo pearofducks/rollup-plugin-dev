@@ -1,5 +1,5 @@
 import { Plugin } from 'rollup'
-import { FastifyPluginCallback } from 'fastify'
+import { FastifyPluginCallback, FastifyInstance } from 'fastify'
 
 export interface ProxyItem {
   from: string
@@ -19,6 +19,7 @@ export interface DevOptions {
   basePath: string;
   extend: FastifyPluginCallback;
   server: object;
+  onListen: (server: FastifyInstance) => void;
 }
 
 export default function dev(options?: (string | DevOptions)): Plugin

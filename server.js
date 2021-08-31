@@ -6,6 +6,7 @@ export async function boot(config) {
     const resolvedPort = await getPort({ host: (config.host ?? '127.0.0.0'), port: [config.port, ...getPort.makeRange(8081, 9000)] })
     const server = await init(config)
     await server.listen(resolvedPort, config.host)
+    if (config.onListen) config.onListen(server)
   } catch (err) {
     console.error(err)
   }
