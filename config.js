@@ -48,7 +48,8 @@ export const defaults = {
   },
   basePath: undefined,
   extend: undefined,
-  dirname: undefined
+  dirname: undefined,
+  onListen: undefined
 }
 
 export const normalize = (rollupOptions = {}) => {
