@@ -6,16 +6,14 @@ a development server for rollup
 
 ### why this plugin?
 
-if you just want to serve a folder of assets, or need only a couple other features; you probably want [rollup-plugin-serve](https://github.com/thgh/rollup-plugin-serve)
-
-compared to rollup-plugin-serve, this plugin:
-- uses Koa to provide the server and implement features
+compared to other plugins, this plugin:
+- uses Fastify to provide the server and implement features
   - while this means there are dependencies, it should also be trivial to add/modify to suit individual needs (see `extend` option below!)
 - has additional features that may be useful
   - detailed logging of requests (see screenshot)
   - full proxy support
   - support for a basepath in the URL
-  - will automatically turn itself off (with a notification) for your production builds
+  - will automatically turn itself off when _watch_ mode isn't enabled
 
 ## install
 
@@ -33,7 +31,9 @@ yarn add --dev rollup-plugin-dev
 import dev from 'rollup-plugin-dev'
 
 export default {
-  plugins: [ dev() ]
+  plugins: [
+    dev()
+  ]
 }
 ```
 
@@ -47,7 +47,7 @@ example: `dev('dist')`<br>
 example: `dev({ dirs: ['dist', 'lib'] })`<br>
 default: `__dirname`<br>
 
-_when no other options are needed for this plugin, a shortcut is available to specify one folder_
+_when no other options are needed, a shortcut is available to specify one folder_
 
 #### basePath
 
@@ -58,21 +58,20 @@ default: `/`
 
 #### silent
 
-will silence all access log messages, as well as the warning printed when rollup is started outside of watch mode
+will silence all log messages, as well as the warning printed when rollup is started outside of watch mode
 
 example: `dev({ silent: true })`<br>
-example: `dev({ silent: 'very' }) // disables all output from this plugin`<br>
 default: `false`
 
 #### proxy
 
 proxy a path to an upstream service
 
-example: `dev({ proxy: { '/v3/*': 'https://polyfill.io/' } })`<br>
-example: `dev({ proxy: { '/v3/*': ['https://polyfill.io/', { https: true }] } })`<br>
+example: `dev({ proxy: [{ from: '/api', to: 'http://localhost:9000/resources' }] })`<br>
+example: `dev({ proxy: [{ from: '/api', to: 'http://localhost:9000/resources', opts: { preHandler: myPreHandler } }] })`<br>
 default: `undefined`<br>
 
-_the value for a proxy can be either a string, or an array specifying the two arguments for [koa-better-http-proxy](https://github.com/nsimmons/koa-better-http-proxy#usage)_
+_`opts` can contain any valid options for [fastify-http-proxy](https://github.com/fastify/fastify-http-proxy)_
 
 #### spa
 
@@ -82,12 +81,18 @@ example: `dev({ spa: true }) // will serve index.html`<br>
 example: `dev({ spa: 'path/to/fallback.html' })`<br>
 default: `false`
 
+_if a path is provided, it should be relative to one of the `dirs` being served_
+
+_the fallback file must reside in one of the `dirs` being served_
+
 #### port
 
 the port the server should listen on
 
 example: `dev({ port: 3000 })`<br>
 default: `8080`
+
+_the server will automatically listen on the first available port after 8080 if the specified/default port is taken_
 
 #### host
 
@@ -103,19 +108,27 @@ force the server to start, even if rollup isn't in watch mode
 example: `dev({ force: true })`<br>
 default: `false`
 
-#### extend
+#### dirname
 
-enables full customization of the dev server
+the path to resolve any relative `dirs` from
 
-example: `dev({ extend(app, modules) { app.use(modules.router.get('/foo', myHandler)) } })`<br>
+example: `dev({ dirname: '/Users/MyUser/Development/my-project' })`<br>
 default: `undefined`
 
-_`app` is the [Koa instance](https://koajs.com/#application) used for the server_
+_this is generally not needed if one is running Rollup from package.json's `scripts`_
 
-modules available:
-- `router`: [koa-route](https://github.com/koajs/route#example)
-- `proxy`: [koa-better-http-proxy](https://github.com/nsimmons/koa-better-http-proxy#usage)
-- `send`: [koa-send](https://github.com/koajs/send#example)
-- `serve`: [koa-static](https://github.com/koajs/static#example)
-- `mount`: [koa-mount](https://github.com/koajs/mount#examples)
-- `color`: [colorette](https://github.com/jorgebucaran/colorette#quickstart)
+#### server
+
+modify options the Fastify server is booted with - accepts any valid [Fastify server attribute](https://www.fastify.io/docs/latest/Server)
+
+example: `dev({ server: { connectionTimeout: 3000 } })`<br>
+default: see `config.js` and the `serverDefaults` export
+
+_here be dragons - because modifying these options can wildly change server behavior, this is supported on an 'as is' basis only_
+
+#### extend
+
+enables full customization of the dev server, expects a [Fastify plugin](https://www.fastify.io/docs/latest/Plugins/)
+
+example: `dev({ extend: fp(async (server) => server.register(myPlugin)) })`<br>
+default: `undefined`

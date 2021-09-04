@@ -1,24 +1,37 @@
 {
   "name": "rollup-plugin-dev",
-  "version": "1.1.3",
+  "version": "2.0.0",
   "description": "a development server for rollup",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "types/index.d.ts",
+  "type": "module",
+  "exports": {
+    "import": "./dist/index.mjs",
+    "require": "./dist/index.cjs"
+  },
+  "imports": {
+    "#init": "./src/init.js",
+    "#config": "./config.js",
+    "#plugin": "./index.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/pearofducks/rollup-plugin-dev"
   },
   "scripts": {
-    "dev": "cd dev && rollup -w -c",
-    "dev:build": "cd dev && rollup -c",
+    "example:proxy": "cd examples/proxy && rollup -w -c",
+    "example:spa": "cd examples/spa && rollup -w -c",
     "build": "rollup -c",
-    "version": "npm run build",
-    "postversion": "npm publish && git push --follow-tags",
+    "preversion": "npm run lint && npm run build",
+    "version": "npm publish",
+    "postversion": "git push --follow-tags",
     "lint": "eslint --ignore-path .gitignore --ext .js .",
-    "test": "ava --verbose"
+    "test": "node test"
   },
   "files": [
-    "dist/"
+    "dist/",
+    "types/"
   ],
   "keywords": [
     "rollup",
@@ -30,27 +43,21 @@
   "author": "Dave Honneffer <pearofducks@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "colorette": "^1.2.1",
-    "date-time": "^3.1.0",
-    "koa": "^2.13.0",
-    "koa-better-http-proxy": "^0.2.5",
-    "koa-mount": "^4.0.0",
-    "koa-route": "^3.2.0",
-    "koa-send": "^5.0.1",
-    "koa-static": "^5.0.0",
-    "ms": "^2.1.2"
+    "date-time": "^4.0.0",
+    "fastify": "^3.20.2",
+    "fastify-http-proxy": "^6.2.0",
+    "fastify-plugin": "^3.0.0",
+    "fastify-request-timing": "^2.0.1",
+    "fastify-static": "^4.2.3",
+    "femtocolor": "^2.0.2",
+    "get-port": "^5.1.1",
+    "joi": "^17.4.2",
+    "ms": "^2.1.3"
   },
   "devDependencies": {
-    "ava": "^3.13.0",
-    "eslint": "^7.13.0",
-    "esm": "^3.2.25",
-    "rollup": "^2.33.3",
-    "sinon": "^9.2.1",
-    "supertest": "^6.0.1"
-  },
-  "ava": {
-    "require": [
-      "esm"
-    ]
+    "drnm": "^0.9.0",
+    "eslint": "^7.32.0",
+    "rollup": "^2.56.3",
+    "uvu": "^0.5.1"
   }
 }

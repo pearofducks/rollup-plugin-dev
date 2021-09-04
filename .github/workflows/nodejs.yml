@@ -7,15 +7,19 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x]
+
     steps:
-    - uses: actions/checkout@v1
-    - name: Get node
-      uses: actions/setup-node@v1
+    - uses: actions/checkout@v2
+    - name: Use node ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
       with:
-        node-version: '12.x'
-    - run: npm i -g yarn
+        node-version: ${{ matrix.node-version }}
     - name: Build
       run: |
         yarn
-        npm run test
-        npm run build --if-present
+        yarn lint
+        yarn test
+        yarn build
