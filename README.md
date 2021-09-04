@@ -132,3 +132,10 @@ enables full customization of the dev server, expects a [Fastify plugin](https:/
 
 example: `dev({ extend: fp(async (server) => server.register(myPlugin)) })`<br>
 default: `undefined`
+
+#### onListen
+
+this is a callback that runs after the server has started
+
+example: `dev({ onListen(server) { server.log.info('Hello world') }`
+default: `undefined`
