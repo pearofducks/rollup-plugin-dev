@@ -83,6 +83,8 @@ default: `false`
 
 _if a path is provided, it should be relative to one of the `dirs` being served_
 
+_the fallback file must reside in one of the `dirs` being served_
+
 #### port
 
 the port the server should listen on
