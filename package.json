@@ -44,11 +44,11 @@
   "license": "MIT",
   "dependencies": {
     "date-time": "^4.0.0",
-    "fastify": "^3.20.2",
-    "fastify-http-proxy": "^6.2.0",
+    "fastify": "^3.23.1",
+    "fastify-http-proxy": "^6.2.1",
     "fastify-plugin": "^3.0.0",
     "fastify-request-timing": "^2.0.1",
-    "fastify-static": "^4.2.3",
+    "fastify-static": "^4.5.0",
     "femtocolor": "^2.0.2",
     "get-port": "^5.1.1",
     "joi": "^17.4.2",
@@ -56,8 +56,8 @@
   },
   "devDependencies": {
     "drnm": "^0.9.0",
-    "eslint": "^7.32.0",
-    "rollup": "^2.56.3",
-    "uvu": "^0.5.1"
+    "eslint": "^8.2.0",
+    "rollup": "^2.59.0",
+    "uvu": "^0.5.2"
   }
 }
