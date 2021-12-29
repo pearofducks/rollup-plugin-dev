@@ -9,6 +9,7 @@ export default (opts = {}) => {
     async writeBundle() {
       deprecate.bind(this)(opts)
       if (booted) return
+      booted = true
       try {
         const config = normalize(opts)
         if (!this.meta.watchMode) {
@@ -16,7 +17,6 @@ export default (opts = {}) => {
           else this.warn(`Starting dev-server even though we're not in watch mode`)
         }
         await boot(config)
-        booted = true
       } catch (err) {
         this.error(err)
       }
