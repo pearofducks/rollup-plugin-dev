@@ -22,7 +22,7 @@ npm install --save-dev rollup-plugin-dev
 ```
 
 ```console
-yarn add --dev rollup-plugin-dev
+pnpm add --save-dev rollup-plugin-dev
 ```
 
 ## use
