@@ -1,5 +1,5 @@
 import fp from 'fastify-plugin'
-import proxyPlugin from 'fastify-http-proxy'
+import proxyPlugin from '@fastify/http-proxy'
 import { logProxy } from './logger.js'
 
 const createProxy = (server) => ({ from, to, opts }) => {

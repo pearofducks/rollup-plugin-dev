@@ -1,5 +1,5 @@
 import fp from 'fastify-plugin'
-import staticPlugin from 'fastify-static'
+import staticPlugin from '@fastify/static'
 import { resolve } from 'path'
 import { logDir } from './logger.js'
 
