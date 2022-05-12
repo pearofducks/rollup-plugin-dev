@@ -119,7 +119,7 @@ _this is generally not needed if one is running Rollup from package.json's `scri
 
 #### server
 
-modify options the Fastify server is booted with - accepts any valid [Fastify server attribute](https://www.fastify.io/docs/latest/Server)
+modify options the Fastify server is booted with - accepts any valid [Fastify server attribute](https://www.fastify.io/docs/latest/Reference//Server)
 
 example: `dev({ server: { connectionTimeout: 3000 } })`<br>
 default: see `config.js` and the `serverDefaults` export
@@ -128,7 +128,7 @@ _here be dragons - because modifying these options can wildly change server beha
 
 #### extend
 
-enables full customization of the dev server, expects a [Fastify plugin](https://www.fastify.io/docs/latest/Plugins/)
+enables full customization of the dev server, expects a [Fastify plugin](https://www.fastify.io/docs/latest/Reference/Plugins/)
 
 example: `dev({ extend: fp(async (server) => server.register(myPlugin)) })`<br>
 default: `undefined`
