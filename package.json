@@ -43,10 +43,10 @@
   "author": "Dave Honneffer <pearofducks@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@fastify/http-proxy": "^7.0.0",
-    "@fastify/static": "^5.0.0",
+    "@fastify/http-proxy": "^7.1.0",
+    "@fastify/static": "^5.0.2",
     "date-time": "^4.0.0",
-    "fastify": "^3.28.0",
+    "fastify": "^3.29.0",
     "fastify-plugin": "^3.0.1",
     "fastify-request-timing": "^2.0.1",
     "femtocolor": "^2.0.2",
@@ -56,8 +56,9 @@
   },
   "devDependencies": {
     "drnm": "^0.9.0",
-    "eslint": "^8.14.0",
-    "rollup": "^2.70.2",
-    "uvu": "^0.5.2"
+    "eslint": "^8.15.0",
+    "rollup": "^2.73.0",
+    "uvu": "^0.5.2",
+    "ws": "^8.6.0"
   }
 }
