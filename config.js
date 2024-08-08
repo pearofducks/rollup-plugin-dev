@@ -17,6 +17,7 @@ const schema = Joi.alternatives().try(
     dirname: Joi.string(),
     spa: [Joi.boolean(), Joi.string()],
     port: Joi.number().port(),
+    forcePort: Joi.boolean(),
     host: [Joi.string().ip(), Joi.string().hostname()],
     basePath: Joi.string().uri({ relativeOnly: true }),
     extend: Joi.function(),

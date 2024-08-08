@@ -3,8 +3,13 @@ import { boot } from './server.js'
 
 export default (opts = {}) => {
   let booted = false
+  let server
   return {
     name: 'dev-server',
+    async closeWatcher() {
+      booted = false
+      await server.server.close()
+    },
     async writeBundle() {
       if (booted) return
       booted = true
@@ -14,7 +19,7 @@ export default (opts = {}) => {
           if (!config.force) return
           else this.warn(`Starting dev-server even though we're not in watch mode`)
         }
-        await boot(config)
+        server = await boot(config)
       } catch (err) {
         this.error(err)
       }

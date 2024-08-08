@@ -22,6 +22,7 @@
   "scripts": {
     "example:proxy": "cd examples/proxy && rollup -w -c",
     "example:spa": "cd examples/spa && rollup -w -c",
+    "example:path": "cd examples/spa-with-path && rollup -w -c",
     "build": "rollup -c",
     "preversion": "npm run lint && npm run build",
     "version": "npm publish",
