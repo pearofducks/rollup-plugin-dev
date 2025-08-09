@@ -11,6 +11,7 @@ export interface DevOptions {
   silent?: boolean;
   force?: boolean;
   proxy?: ProxyItem[];
+  index?: string | false;
   dirs?: string[];
   dirname?: string;
   spa?: (boolean | string);
